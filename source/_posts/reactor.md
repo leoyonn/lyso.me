@@ -24,18 +24,18 @@ Reactor是一套在JVM上实现异步应用的框架，为Java、Groovy等JVM语
 可以参见其[Usage-Guide wiki](https://github.com/reactor/reactor/wiki/Usage-Guide)，简单来说，
 
 ```
-    // 1. 创建一个环境
-    final Environment env = new Environment();
+// 1. 创建一个环境
+final Environment env = new Environment();
 
-    // 2. 通过环境创建一个Reactor
-    Reactor r = Reactors.reactor().env(env).get();
-    
-    // 3. 告诉Reactor如何处理事件（指定handler，即Consumer）
-    reactor.on($("topic"), new Consumer<Event<Message>>() { ... });
+// 2. 通过环境创建一个Reactor
+Reactor r = Reactors.reactor().env(env).get();
 
-    // 4. 向reactor中发送消息
-    Message msg = msgService.nextMessage();
-    reactor.notify("topic", Event.wrap(msg));
+// 3. 告诉Reactor如何处理事件（指定handler，即Consumer）
+reactor.on($("topic"), new Consumer<Event<Message>>() { ... });
+
+// 4. 向reactor中发送消息
+Message msg = msgService.nextMessage();
+reactor.notify("topic", Event.wrap(msg));
 ```
 
 接下来按从整体到局部、从数据源头到尾的方式，简单分析其代码架构。
@@ -47,16 +47,17 @@ Reactor的接口定义为Observable，主要提供了三种接口。
 ### respondsToKey
 
 查询是否这个key在Reactor中有对应的处理
+
 ```
-    /**
-     * Are there any {@link Registration}s with {@link Selector Selectors} that match the given {@code key}.
-     *
-     * @param key
-     *         The key to be matched by {@link Selector Selectors}
-     *
-     * @return {@literal true} if there are any matching {@literal Registration}s, {@literal false} otherwise
-     */
-    boolean respondsToKey(Object key);
+/**
+ * Are there any {@link Registration}s with {@link Selector Selectors} that match the given {@code key}.
+ *
+ * @param key
+ *         The key to be matched by {@link Selector Selectors}
+ *
+ * @return {@literal true} if there are any matching {@literal Registration}s, {@literal false} otherwise
+ */
+boolean respondsToKey(Object key);
 ```
 
 ### on
@@ -64,20 +65,20 @@ Reactor的接口定义为Observable，主要提供了三种接口。
 将Consumer通过Selector注册到Reactor上，如果有消息到达Reactor并在Selector中match了，会发到这个Consumer。
 
 ```
-    /**
-     * Register a {@link reactor.function.Consumer} to be triggered when a notification matches the given {@link
-     * Selector}.
-     *
-     * @param sel
-     *         The {@literal Selector} to be used for matching
-     * @param consumer
-     *         The {@literal Consumer} to be triggered
-     * @param <E>
-     *         The type of the {@link reactor.event.Event}
-     *
-     * @return A {@link Registration} object that allows the caller to interact with the given mapping
-     */
-    <E extends Event<?>> Registration<Consumer<E>> on(Selector sel, Consumer<E> consumer);
+/**
+ * Register a {@link reactor.function.Consumer} to be triggered when a notification matches the given {@link
+ * Selector}.
+ *
+ * @param sel
+ *         The {@literal Selector} to be used for matching
+ * @param consumer
+ *         The {@literal Consumer} to be triggered
+ * @param <E>
+ *         The type of the {@link reactor.event.Event}
+ *
+ * @return A {@link Registration} object that allows the caller to interact with the given mapping
+ */
+<E extends Event<?>> Registration<Consumer<E>> on(Selector sel, Consumer<E> consumer);
 ```
 
 ### notify
@@ -85,22 +86,22 @@ Reactor的接口定义为Observable，主要提供了三种接口。
 notify接口有很多种，大同小异，相当于MAMPA中的tell，告诉Reactor这个事件可以进行处理了，处理完后调用参数中consumer的onComplete。
 
 ```
-    /**
-     * Notify this component that an {@link Event} is ready to be processed and {@link Consumer#accept accept} {@code
-     * onComplete} after dispatching.
-     *
-     * @param key
-     *         The key to be matched by {@link Selector Selectors}
-     * @param ev
-     *         The {@literal Event}
-     * @param onComplete
-     *         The callback {@link Consumer}
-     * @param <E>
-     *         The type of the {@link Event}
-     *
-     * @return {@literal this}
-     */
-    <E extends Event<?>> Observable notify(Object key, E ev, Consumer<E> onComplete);
+/**
+ * Notify this component that an {@link Event} is ready to be processed and {@link Consumer#accept accept} {@code
+ * onComplete} after dispatching.
+ *
+ * @param key
+ *         The key to be matched by {@link Selector Selectors}
+ * @param ev
+ *         The {@literal Event}
+ * @param onComplete
+ *         The callback {@link Consumer}
+ * @param <E>
+ *         The type of the {@link Event}
+ *
+ * @return {@literal this}
+ */
+<E extends Event<?>> Observable notify(Object key, E ev, Consumer<E> onComplete);
 ```
 
 ### Reactor中的成员
@@ -108,11 +109,11 @@ notify接口有很多种，大同小异，相当于MAMPA中的tell，告诉React
 一个Reactor中管理着如下几种成员对象。
 
 ```
-    private final Dispatcher                             dispatcher;
-    private final Registry<Consumer<? extends Event<?>>> consumerRegistry;
-    private final EventRouter                            eventRouter;
-    private final Consumer<Throwable>                    dispatchErrorHandler;
-    private final Consumer<Throwable>                    uncaughtErrorHandler;
+private final Dispatcher                             dispatcher;
+private final Registry<Consumer<? extends Event<?>>> consumerRegistry;
+private final EventRouter                            eventRouter;
+private final Consumer<Throwable>                    dispatchErrorHandler;
+private final Consumer<Throwable>                    uncaughtErrorHandler;
 ```
 
   * 当外部调用`on`接口时，会将Consumer的注册信息加入到`consumerRegistry`中去
@@ -126,52 +127,52 @@ notify接口有很多种，大同小异，相当于MAMPA中的tell，告诉React
 Dispatcher中主要是一个`dispatch`接口，负责将事件分发到对应的consumers上。
 
 ```
-    /**
-     * Instruct the {@code Dispatcher} to dispatch the {@code event} that has the given {@code key}. The {@link Consumer}s
-     * that will receive the event are selected from the {@code consumerRegistry}, and the event is routed to them using
-     * the {@code eventRouter}. In the event of an error during dispatching, the {@code errorConsumer} will be called. In
-     * the event of successful dispatching, the {@code completionConsumer} will be called.
-     *
-     * @param key                The key associated with the event
-     * @param event              The event
-     * @param consumerRegistry   The registry from which consumer's are selected
-     * @param errorConsumer      The consumer that is invoked if dispatch fails. May be {@code null}
-     * @param eventRouter        Used to route the event to the selected consumers
-     * @param completionConsumer The consumer that is driven if dispatch succeeds May be {@code null}
-     * @param <E>                type of the event
-     * @throws IllegalStateException If the {@code Dispatcher} is not {@link Dispatcher#alive() alive}
-     */
-    <E extends Event<?>> void dispatch(Object key,
-                                                                         E event,
-                                                                         Registry<Consumer<? extends Event<?>>> consumerRegistry,
-                                                                         Consumer<Throwable> errorConsumer,
-                                                                         EventRouter eventRouter,
-                                                                         Consumer<E> completionConsumer);
+/**
+ * Instruct the {@code Dispatcher} to dispatch the {@code event} that has the given {@code key}. The {@link Consumer}s
+ * that will receive the event are selected from the {@code consumerRegistry}, and the event is routed to them using
+ * the {@code eventRouter}. In the event of an error during dispatching, the {@code errorConsumer} will be called. In
+ * the event of successful dispatching, the {@code completionConsumer} will be called.
+ *
+ * @param key                The key associated with the event
+ * @param event              The event
+ * @param consumerRegistry   The registry from which consumer's are selected
+ * @param errorConsumer      The consumer that is invoked if dispatch fails. May be {@code null}
+ * @param eventRouter        Used to route the event to the selected consumers
+ * @param completionConsumer The consumer that is driven if dispatch succeeds May be {@code null}
+ * @param <E>                type of the event
+ * @throws IllegalStateException If the {@code Dispatcher} is not {@link Dispatcher#alive() alive}
+ */
+<E extends Event<?>> void dispatch(Object key,
+                                 E event,
+                                 Registry<Consumer<? extends Event<?>>> consumerRegistry,
+                                 Consumer<Throwable> errorConsumer,
+                                 EventRouter eventRouter,
+                                 Consumer<E> completionConsumer);
 ```
 
 在Reactor通过`notify`收到一个事件时，直接调用dispatcher的`dispatch`接口。在`dispatch`中，申请一个Task，然后提交执行：
 
 ```
-    Task task;
-    boolean isInContext = isInContext();
-    if (isInContext) {
-        task = allocateRecursiveTask();
-    } else {
-        task = allocateTask();
-    }
+Task task;
+boolean isInContext = isInContext();
+if (isInContext) {
+    task = allocateRecursiveTask();
+} else {
+    task = allocateTask();
+}
 
-    task.setKey(key)
-        .setEvent(event)
-        .setConsumerRegistry(consumerRegistry)
-        .setErrorConsumer(errorConsumer)
-        .setEventRouter(eventRouter)
-        .setCompletionConsumer(completionConsumer);
+task.setKey(key)
+    .setEvent(event)
+    .setConsumerRegistry(consumerRegistry)
+    .setErrorConsumer(errorConsumer)
+    .setEventRouter(eventRouter)
+    .setCompletionConsumer(completionConsumer);
 
-    if (isInContext) {
-        addToTailRecursionPile(task);
-    } else {
-        execute(task);
-    }
+if (isInContext) {
+    addToTailRecursionPile(task);
+} else {
+    execute(task);
+}
 ```
 
 至于提交执行的实现，视不同的不同的Dispatcher实现而异，Reactor中Dispatcher实现有很多种，如

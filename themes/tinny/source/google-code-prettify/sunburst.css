@@ -15,19 +15,21 @@ pre .dec, code .dec { color: #3387CC; } /* decimal - blue */
 
 pre.prettyprint, code.prettyprint {
 	background-color: #000;
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	-o-border-radius: 8px;
-	-ms-border-radius: 8px;
-	-khtml-border-radius: 8px;
-	border-radius: 8px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-o-border-radius: 6px;
+	-ms-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	border-radius: 6px;
 }
 
 pre.prettyprint {
-	width: 95%;
+	width: 98%;
 	margin: 1em auto;
 	padding: 1em;
 	white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 11px;
 }
 
 

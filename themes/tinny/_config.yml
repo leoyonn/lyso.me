@@ -91,7 +91,7 @@ author:
 #### Comment
 duoshuo: 
   enable: true  ## duoshuo.com
-  short_name: leoyonn   ## duoshuo short name.
+  short_name: lyso   ## duoshuo short name.
 
 #### Share button
 jiathis:

@@ -77,4 +77,5 @@ deploy:
   branch: master
 
 duoshuo_enable: true
+duoshuo_shortname: lyso
 

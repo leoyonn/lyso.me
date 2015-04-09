@@ -147,8 +147,8 @@ Dispatcher中主要是一个`dispatch`接口，负责将事件分发到对应的
                                                                          Consumer<Throwable> errorConsumer,
                                                                          EventRouter eventRouter,
                                                                          Consumer<E> completionConsumer);
-```                                                                          
- 
+```
+
 在Reactor通过`notify`收到一个事件时，直接调用dispatcher的`dispatch`接口。在`dispatch`中，申请一个Task，然后提交执行：
 
 ```

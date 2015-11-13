@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Lyso as™ R&D
+title: Lyso™
 subtitle: 理想主义者在现实中的舞步
 description:
 author: leoyonn
@@ -44,7 +44,7 @@ relative_link: false
 future: true
 highlight:
   enable: true
-  line_number: true
+  line_number: false
   tab_replace:
 
 # Category & Tag

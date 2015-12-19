@@ -81,7 +81,7 @@ colorscheme:
 author:
   google_plus:    ## eg:116338260303228776998 for https://plus.google.com/u/0/116338260303228776998
   intro_line1: '送姜科技联合创始人/CTO'    ## eg: "Hello ,I'm Larry Page in Google."
-  intro_line2: 'Technology liberate inidividuals, innovation changes the world.'   ## eg: "This is my blog,believe it or not."
+  intro_line2: 'Technology liberates individuals, innovation changes the world.'
   weibo: '1821284675'         ## e.g. 436062867 for http://weibo.com/436062867
   twitter:        ## e.g. yangjiansky for https://twitter.com/yangjiansky
   github: 'leoyonn'      ## e.g. A-limon for https://github.com/A-limon

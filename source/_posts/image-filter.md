@@ -15,17 +15,50 @@ categories:
 
 当时还没有多成熟的移动互联网滤镜APP，而且没有现成的算法文献或实现代码。
 
-PM等团队成员开会讨论下个版本开发时，滤镜只是提出来作为一个研究方案，没有具体的时间规划和方案。我本身是图形图像的研究方向，滤镜的原理其实很简单，所以直接接下了说一周内调研一下给出方案。然后一周内我就实现了几十种滤镜功能，文档、代码、试验结果都有了。
+PM等团队成员开会讨论下个版本涉及到的功能时，滤镜只是提出来作为一个研究方向，没有具体的时间规划和实现方案。我本身是图形图像的研究方向，滤镜的原理其实很简单，所以直接接下了说一周内调研一下给出方案。然后一周内我就实现了几十种滤镜功能，文档、代码、试验结果都有了。
 
 最有意思的还是算法设计的过程。由于对Photoshop有一定的了解，直接用黑白图、单色图、灰度图、渐变图等，在Photoshop中做比较好看的效果处理，然后用吸管吸取处理后的图像像素色值，绘制曲线，然后用公式模拟曲线，用代码实现公式算法。让滤镜从一个很不确定的东西一跃成为这个版本中最大的亮点。
 
-后续跟进实现了更多种更有意思的滤镜。后来在公司内分享实现的原理及算法，并把代码整理了分享。之后有其它部门APP里涉及到滤镜问我实现方法，我把文档和代码都发给了他们，包括易信等APP，不少效果和这里的挺像的。所以这版滤镜是后续不少移动互联网产品APP的滤镜原型。
+后续跟进实现了更多种更有意思的滤镜。后来在公司内分享实现的原理及算法，并把代码分享。之后有网易其它大部门（不止是有道）APP里涉及到滤镜问我实现方法，我把文档和代码都发给了他们，包括易信等APP，不少效果和这里的挺像的。所以这版滤镜是后续不少移动互联网产品APP的滤镜原型，哈哈。
 
-对了，当时我还没从学校毕业，在有道还是实习生的身份：）
+对了，当时我还没从学校毕业，在有道还是实习生的身份。
 
-几个月后成为八方后端技术负责人，推动了八方2.0等版本的研发。
+几个月后成为八方后端技术负责人，推动了八方2.0及后续版本的研发。
 
-感兴趣的同学可以在这里下载源代码，https://github.com/leoyonn/pic_filter，以下是部分示例：
+（再后来……就没有然后了，八方不赚钱，被砍了……）
+
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.02.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.03.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.04.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.05.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.06.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.07.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.08.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.09.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.10.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.11.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.12.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.13.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.15.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.16.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.17.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.18.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.19.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.20.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.21.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.22.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.23.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.24.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.25.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.26.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.27.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.28.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.29.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.30.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.31.jpg)
+![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.32.jpg)
+
+感兴趣的同学可以在这里下载源代码，https://github.com/leoyonn/pic_filter ，以下是部分示例：
 
 ```
 /**
@@ -123,34 +156,4 @@ void PicFilter::darkenCorners2(Byte *data, Real weight, Real radius) {
 }
 
 ```
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.02.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.03.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.04.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.05.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.06.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.07.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.08.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.09.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.10.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.11.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.12.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.13.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.15.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.16.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.17.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.18.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.19.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.20.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.21.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.22.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.23.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.24.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.25.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.26.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.27.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.28.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.29.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.30.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.31.jpg)
-![image-filter](http://7jprdp.com1.z0.glb.clouddn.com/cube.ps.32.jpg)
 
